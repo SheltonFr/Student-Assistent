@@ -116,4 +116,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="content_description_media">imagem de estudantes</string>
     <string name="add_events_string">You can add new events with the button in the bottom right corner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

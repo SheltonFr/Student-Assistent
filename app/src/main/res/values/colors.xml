@@ -10,5 +10,6 @@
 
     <!--    Custom dark collors-->
     <color name="dark">#202020</color>
+    <color name="card_bg">#23FFFFFF</color>
 
 </resources>
