@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "526168208417",
+    "project_id": "android-student-assistent",
+    "storage_bucket": "android-student-assistent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526168208417:android:69dbb23a9e10c35ddedf60",
+        "android_client_info": {
+          "package_name": "dev.sheltonfrancisco.studentassistent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526168208417-s3f41avbbkqrfej8gufann95a89436g3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3zzKgXxTcT57hOlUiF-8peaxQWxxz8qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526168208417-s3f41avbbkqrfej8gufann95a89436g3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

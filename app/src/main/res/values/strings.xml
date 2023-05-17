@@ -114,4 +114,6 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="content_description_media">imagem de estudantes</string>
+    <string name="add_events_string">You can add new events with the button in the bottom right corner</string>
 </resources>
