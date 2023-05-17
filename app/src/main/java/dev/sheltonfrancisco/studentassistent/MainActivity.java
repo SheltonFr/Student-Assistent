@@ -2,6 +2,7 @@ package dev.sheltonfrancisco.studentassistent;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import dev.sheltonfrancisco.studentassistent.databinding.ActivityMainBinding;
+import dev.sheltonfrancisco.studentassistent.ui.ProgressDialog;
 import dev.sheltonfrancisco.studentassistent.ui.auth.AuthActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,13 +38,9 @@ public class MainActivity extends AppCompatActivity {
         verifySession();
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -65,9 +63,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.action_logout) {
-            FirebaseAuth.getInstance().signOut();
-            verifySession();
+        if (item.getItemId() == R.id.action_logout) {
+            final ProgressDialog dialog = new ProgressDialog(this);
+            Handler handler = new Handler();
+
+            dialog.startLoading();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    FirebaseAuth.getInstance().signOut();
+                    dialog.dismissDialog();
+                    verifySession();
+                }
+            }, 2500);
         }
         return true;
 
@@ -82,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void verifySession() {
-        if(FirebaseAuth.getInstance().getUid() == null) {
+        if (FirebaseAuth.getInstance().getUid() == null) {
             Intent intent = new Intent(this, AuthActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
