@@ -48,4 +48,8 @@ dependencies {
     // firebase
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
     implementation 'com.google.firebase:firebase-auth'
+
+    // calendar dependency: https://github.com/kizitonwose/Calendar
+    implementation 'com.kizitonwose.calendar:view:2.3.0'
+    implementation 'com.kizitonwose.calendar:compose:2.3.0'
 }

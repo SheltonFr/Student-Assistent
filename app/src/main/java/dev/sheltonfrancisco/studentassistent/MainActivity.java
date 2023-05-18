@@ -77,10 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }, 2500);
         }
-        return true;
-
-
+        return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
