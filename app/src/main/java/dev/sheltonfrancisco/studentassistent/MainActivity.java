@@ -18,16 +18,24 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
+import java.util.Calendar;
+
+import dev.sheltonfrancisco.studentassistent.database.AppDatabase;
+import dev.sheltonfrancisco.studentassistent.database.dao.TaskDao;
 import dev.sheltonfrancisco.studentassistent.databinding.ActivityMainBinding;
+import dev.sheltonfrancisco.studentassistent.models.Task;
 import dev.sheltonfrancisco.studentassistent.ui.ProgressDialog;
 import dev.sheltonfrancisco.studentassistent.ui.auth.AuthActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String DATABASE_NAME = "student-assistent";
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-
+    private AppDatabase db;
+    private TaskDao taskDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +43,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, DATABASE_NAME).allowMainThreadQueries().build();
+        taskDao = db.taskDao();
+
         verifySession();
 
+
+
+        // Drawer
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
@@ -95,4 +109,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
 }
