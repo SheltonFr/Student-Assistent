@@ -1,13 +1,13 @@
 package dev.sheltonfrancisco.studentassistent.models;
 
 import androidx.room.Entity;
-import androidx.room.TypeConverter;
+import androidx.room.PrimaryKey;
 
-import dev.sheltonfrancisco.studentassistent.database.dao.SubjectDao;
 import dev.sheltonfrancisco.studentassistent.models.enums.SubjectStatus;
 
 @Entity
 public class Subject {
+    @PrimaryKey
     private int _id;
     private int userId;
     private Long createdAt;

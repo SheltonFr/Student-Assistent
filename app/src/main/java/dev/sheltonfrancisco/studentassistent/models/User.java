@@ -10,23 +10,11 @@ public class User {
     private String username;
     private String email;
 
-    public User(int _id, String firebaseid, String username, String email) {
-        this._id = _id;
-        this.firebaseid = firebaseid;
-        this.username = username;
-        this.email = email;
-    }
-
-    public User(String firebaseid, String username, String email) {
-        this.firebaseid = firebaseid;
-        this.username = username;
-        this.email = email;
-    }
+  public User(){}
 
     public int get_id() {
-        return _id;
+      return _id;
     }
-
     public void set_id(int _id) {
         this._id = _id;
     }

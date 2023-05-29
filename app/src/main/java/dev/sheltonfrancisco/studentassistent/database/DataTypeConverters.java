@@ -8,6 +8,9 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
+import dev.sheltonfrancisco.studentassistent.models.enums.SubjectStatus;
+import dev.sheltonfrancisco.studentassistent.models.enums.TaskStatus;
+
 public class DataTypeConverters {
 
     @TypeConverter
@@ -26,4 +29,23 @@ public class DataTypeConverters {
         return  localDateTime == null ? null : calendar.getTimeInMillis();
     }
 
+    @TypeConverter
+    public static String  taskStatus(TaskStatus taskStatus) {
+       return taskStatus == null ? null : String.valueOf(taskStatus);
+    }
+
+    @TypeConverter
+    public static TaskStatus  stringTaskStatus(String status) {
+        return status == null ? null : TaskStatus.valueOf(status);
+    }
+
+    @TypeConverter
+    public static String  subjectStatus(SubjectStatus subjectStatus) {
+        return subjectStatus == null ? null : String.valueOf(subjectStatus);
+    }
+
+    @TypeConverter
+    public static SubjectStatus stringSubjectStatus(String status) {
+        return status == null ? null : SubjectStatus.valueOf(status);
+    }
 }

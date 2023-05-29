@@ -15,9 +15,9 @@ public class Task {
     private int id;
     private int userId;
     private String description;
-    private Long deadLine;
+    private LocalDateTime deadLine;
     private TaskStatus status;
-    private Long createdAt;
+    private LocalDateTime createdAt;
     public Task() {}
 
     public int getId() {
@@ -44,11 +44,11 @@ public class Task {
         this.description = description;
     }
 
-    public Long getDeadLine() {
+    public LocalDateTime getDeadLine() {
         return deadLine;
     }
 
-    public void setDeadLine(Long deadLine) {
+    public void setDeadLine(LocalDateTime deadLine) {
         this.deadLine = deadLine;
     }
 
@@ -60,11 +60,11 @@ public class Task {
         this.status = status;
     }
 
-    public Long getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Long createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 }
