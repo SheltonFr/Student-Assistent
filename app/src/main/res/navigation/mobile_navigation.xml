@@ -15,15 +15,11 @@
         android:name="dev.sheltonfrancisco.studentassistent.ui.agenda.AgendaFragment"
         android:label="@string/menu_agenda"
         tools:layout="@layout/fragment_agenda"/>
-    <fragment
-        android:id="@+id/nav_calendar"
-        android:name="dev.sheltonfrancisco.studentassistent.ui.calendar.CalendarFragment"
-        android:label="@string/menu_calendar"
-        tools:layout="@layout/fragment_calendar"/>
 
     <fragment
-        android:id="@+id/nav_table"
-        android:name="dev.sheltonfrancisco.studentassistent.ui.timetable.TimetableFragment"
-        android:label="@string/menu_timetable"
-        tools:layout="@layout/fragment_timetable"/>
+        android:id="@+id/nav_subject"
+        android:name="dev.sheltonfrancisco.studentassistent.ui.subject.SubjectFragment"
+        android:label="Subjects"
+        tools:layout="@layout/fragment_subject" />
+
 </navigation>

@@ -1,4 +1,4 @@
-package dev.sheltonfrancisco.studentassistent.ui.calendar;
+package dev.sheltonfrancisco.studentassistent.ui.subject;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import dev.sheltonfrancisco.studentassistent.R;
 
-public class CalendarFragment extends Fragment {
+public class SubjectFragment extends Fragment {
 
-    private CalendarViewModel mViewModel;
+    private SubjectViewModel mViewModel;
 
-    public static CalendarFragment newInstance() {
-        return new CalendarFragment();
+    public static SubjectFragment newInstance() {
+        return new SubjectFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        return inflater.inflate(R.layout.fragment_subject, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(SubjectViewModel.class);
         // TODO: Use the ViewModel
     }
 

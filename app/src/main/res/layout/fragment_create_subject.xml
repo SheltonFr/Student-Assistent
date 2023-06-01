@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    tools:context=".ui.create.CreateSubjectFragment">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="24dp"
+        android:text="Add a Subject"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputSubjectName"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Ex: Math..."
+        android:textColorHint="#ADFFFFFF"
+        android:textColor="@color/white"
+        android:paddingHorizontal="7dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/inputTeacherName"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Teacher's Nane"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="7dp"
+        android:textColor="@color/white"
+        android:textColorHint="#ADFFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/inputSubjectName"
+        app:layout_constraintStart_toStartOf="@+id/inputSubjectName"
+        app:layout_constraintTop_toBottomOf="@+id/inputSubjectName" />
+
+    <EditText
+        android:id="@+id/inputGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="7"
+        android:hint="Ex: Grade 4 "
+        android:inputType="number"
+        android:paddingHorizontal="7dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#ADFFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/inputTeacherName"
+        app:layout_constraintStart_toStartOf="@+id/inputTeacherName"
+        app:layout_constraintTop_toBottomOf="@+id/inputTeacherName" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:text="Save"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/inputTeacherName"
+        app:layout_constraintStart_toStartOf="@+id/inputTeacherName"
+        android:background="@color/purple_700"
+        app:layout_constraintTop_toBottomOf="@+id/inputGrade" />
+</androidx.constraintlayout.widget.ConstraintLayout>

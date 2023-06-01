@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    tools:context=".ui.create.CreateTaskFragment"
+    tools:ignore="ExtraText">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="24dp"
+        android:text="Add a Task"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputTaskTitle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="7dp"
+        android:textColor="@color/white"
+        android:textColorHint="#ADFFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    ]
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/saveTaskButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="64dp"
+        android:background="@color/purple_700"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/inputTime"
+        app:layout_constraintStart_toStartOf="@+id/inputTime"
+        app:layout_constraintTop_toBottomOf="@+id/inputTime" />
+
+    <EditText
+        android:id="@+id/inputTaskDescription"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="7dp"
+        android:textColor="@color/white"
+        android:textColorHint="#ADFFFFFF"
+        android:hint="Description"
+        app:layout_constraintEnd_toEndOf="@+id/inputTaskTitle"
+        app:layout_constraintStart_toStartOf="@+id/inputTaskTitle"
+        app:layout_constraintTop_toBottomOf="@+id/inputTaskTitle" />
+
+    <EditText
+        android:id="@+id/inputDeadline"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="date"
+        android:paddingHorizontal="7dp"
+        android:hint="Deadline"
+        android:textColor="@color/white"
+        android:textColorHint="#ADFFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/inputTaskDescription"
+        app:layout_constraintStart_toStartOf="@+id/inputTaskDescription"
+        app:layout_constraintTop_toBottomOf="@+id/inputTaskDescription" />
+
+    <EditText
+        android:id="@+id/inputTime"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="time"
+        android:hint="Time"
+        android:paddingHorizontal="7dp"
+        android:textColor="@color/white"
+        android:textColorHint="#ADFFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/inputDeadline"
+        app:layout_constraintStart_toStartOf="@+id/inputDeadline"
+        app:layout_constraintTop_toBottomOf="@+id/inputDeadline" />
+</androidx.constraintlayout.widget.ConstraintLayout>

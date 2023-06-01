@@ -10,8 +10,10 @@ public class Subject {
     @PrimaryKey
     private int _id;
     private int userId;
+    private String name;
+    private String teacher;
+    private int Grade;
     private Long createdAt;
-
     private SubjectStatus status;
 
     public Subject() {}
@@ -26,6 +28,30 @@ public class Subject {
 
     public int getUserId() {
         return userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+
+    public int getGrade() {
+        return Grade;
+    }
+
+    public void setGrade(int grade) {
+        Grade = grade;
     }
 
     public void setUserId(int userId) {

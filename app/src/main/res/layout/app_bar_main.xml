@@ -23,13 +23,50 @@
     <include layout="@layout/content_main" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="150dp"
+        android:backgroundTint="@color/purple_700"
+        android:clickable="false"
+        android:elevation="16dp"
+        android:focusable="true"
+        android:visibility="invisible"
+        android:src="@drawable/baseline_view_list"
+        app:pressedTranslationZ="12dp"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="90dp"
+        android:backgroundTint="@color/purple_700"
+        android:clickable="false"
+        android:elevation="16dp"
+        android:focusable="true"
+        android:visibility="invisible"
+        android:src="@drawable/baseline_menu_book_24"
+        app:pressedTranslationZ="12dp"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#A8FFFFFF"
-        app:srcCompat="@drawable/baseline_add" />
+        android:backgroundTint="@color/purple_700"
+        android:clickable="true"
+        android:elevation="16dp"
+        android:focusable="true"
+        android:src="@drawable/baseline_add"
+        app:pressedTranslationZ="12dp"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

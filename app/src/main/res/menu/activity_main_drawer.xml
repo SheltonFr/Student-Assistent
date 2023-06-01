@@ -13,13 +13,8 @@
             android:icon="@drawable/outline_book_24"
             android:title="@string/menu_agenda" />
         <item
-            android:id="@+id/nav_calendar"
-            android:icon="@drawable/baseline_calendar_today_24"
-            android:title="@string/menu_calendar"/>
-
-        <item
-            android:id="@+id/nav_table"
-            android:icon="@drawable/baseline_backup_table_24"
-            android:title="@string/menu_timetable"/>
+            android:id="@+id/nav_subject"
+            android:icon="@drawable/baseline_menu_book_24"
+            android:title="@string/menu_subjects"/>
     </group>
 </menu>
