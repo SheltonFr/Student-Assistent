@@ -22,4 +22,8 @@ public class Storage {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", context.MODE_PRIVATE);
         return sharedPreferences.edit().clear().commit();
     }
+
+    public static String getBearerToken (Context context) {
+        return "Bearer " + getTokenFromSharedPreferences(context);
+    }
 }

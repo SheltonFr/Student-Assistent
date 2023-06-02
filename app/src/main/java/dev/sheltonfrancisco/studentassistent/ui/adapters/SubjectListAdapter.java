@@ -33,6 +33,11 @@ public class SubjectListAdapter extends RecyclerView.Adapter<SubjectListAdapter.
         holder.bind(subjects.get(position));
     }
 
+    public void updateList(ArrayList<Subject> subjects) {
+        this.subjects.clear();
+        this.subjects.addAll(subjects);
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return subjects.size();
@@ -50,6 +55,7 @@ public class SubjectListAdapter extends RecyclerView.Adapter<SubjectListAdapter.
         }
 
         public void bind(Subject subject) {
+            System.out.println(subject.getName());
             subName.setText(subject.getName());
             profName.setText(subject.getTeacher());
         }

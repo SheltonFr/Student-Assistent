@@ -98,7 +98,6 @@ public class AuthActivity extends AppCompatActivity implements AuthEventListener
                     Intent intent = new Intent(AuthActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    return;
                 }
 
                 Toast.makeText(AuthActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
@@ -132,7 +131,6 @@ public class AuthActivity extends AppCompatActivity implements AuthEventListener
                     Intent intent = new Intent(AuthActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    return;
                 }
 
                 Toast.makeText(AuthActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
