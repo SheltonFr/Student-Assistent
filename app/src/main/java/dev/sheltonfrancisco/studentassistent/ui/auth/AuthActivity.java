@@ -6,22 +6,23 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthEmailException;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 import dev.sheltonfrancisco.studentassistent.MainActivity;
+import dev.sheltonfrancisco.studentassistent.api.RetrofitConfig;
+import dev.sheltonfrancisco.studentassistent.api.requests.AuthBody;
+import dev.sheltonfrancisco.studentassistent.api.responses.AuthResponse;
 import dev.sheltonfrancisco.studentassistent.databinding.ActivityAuthBinding;
 import dev.sheltonfrancisco.studentassistent.ui.ProgressDialog;
 import dev.sheltonfrancisco.studentassistent.ui.adapters.AuthViewPagerAdapter;
 import dev.sheltonfrancisco.studentassistent.ui.listeners.AuthEventListener;
+import dev.sheltonfrancisco.studentassistent.utils.Storage;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AuthActivity extends AppCompatActivity implements AuthEventListener {
 
@@ -30,6 +31,7 @@ public class AuthActivity extends AppCompatActivity implements AuthEventListener
     private FragmentManager fragmentManager;
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,58 +81,69 @@ public class AuthActivity extends AppCompatActivity implements AuthEventListener
 
     @Override
     public void handleSignIn(String email, String password) {
-
         final ProgressDialog loadingDialog = new ProgressDialog(this);
         loadingDialog.startLoading();
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    loadingDialog.dismissDialog();
-                    if(task.isSuccessful()){
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        return;
-                    }
+        AuthBody body = new AuthBody(email, password);
+        Call<AuthResponse> userCall = new RetrofitConfig().getUserService().login(body);
 
-                    Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
-                });
+        userCall.enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                loadingDialog .dismissDialog();
+                if (response.isSuccessful() && response.code() == 200) {
+                    AuthResponse responseToken = response.body();
+                    String token = responseToken.getToken();
+                    Storage.saveTokenToSharedPreferences(getApplicationContext(), token);
+                    Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    return;
+                }
+
+                Toast.makeText(AuthActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+                Log.e("ERROR", t.getMessage(), t);
+            }
+        });
 
     }
 
     @Override
-    public void handleRegistration(String email, String username, String passeord) {
-        final ProgressDialog loadingDialog = new ProgressDialog(this);
-        loadingDialog.startLoading();
+    public void handleRegistration(String email, String username, String password) {
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passeord)
-                .addOnCompleteListener(task -> {
-                    loadingDialog.dismissDialog();
-                    if(task.isSuccessful()){
+        final ProgressDialog loadDialog = new ProgressDialog(this);
+        loadDialog.startLoading();
 
-                        Log.i("TESTE", task.getResult().getUser().getUid());
+        AuthBody body = new AuthBody(username, email, password);
+        Call<AuthResponse> userCall = new RetrofitConfig().getUserService().create(body);
 
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        return;
-                    }
+        userCall.enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                loadDialog.dismissDialog();
+                if (response.isSuccessful() && response.code() == 201) {
+                    AuthResponse responseToken = response.body();
+                    String token = responseToken.getToken();
+                    Storage.saveTokenToSharedPreferences(getApplicationContext(), token);
+                    Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    return;
+                }
 
+                Toast.makeText(AuthActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+            }
 
-                })
-                .addOnFailureListener(e -> {
-                    if(e.getClass() == FirebaseAuthWeakPasswordException.class){
-                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    if(e.getClass() == FirebaseAuthInvalidCredentialsException.class) {
-                        Toast.makeText(this, "Enter a vald email", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    Log.e("TESTE", e.getMessage(), e);
-                    Toast.makeText(this, "An error occured while creating user", Toast.LENGTH_LONG).show();
-                });
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+                Log.e("ERROR", t.getMessage(), t);
+            }
+        });
     }
+
+
 }

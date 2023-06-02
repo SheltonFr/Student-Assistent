@@ -3,34 +3,27 @@ package dev.sheltonfrancisco.studentassistent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
-import java.util.Calendar;
+import com.google.android.material.navigation.NavigationView;
 
-import dev.sheltonfrancisco.studentassistent.database.AppDatabase;
-import dev.sheltonfrancisco.studentassistent.database.dao.TaskDao;
 import dev.sheltonfrancisco.studentassistent.databinding.ActivityMainBinding;
-import dev.sheltonfrancisco.studentassistent.models.Task;
 import dev.sheltonfrancisco.studentassistent.ui.ProgressDialog;
 import dev.sheltonfrancisco.studentassistent.ui.auth.AuthActivity;
 import dev.sheltonfrancisco.studentassistent.ui.create.CreateActivity;
+import dev.sheltonfrancisco.studentassistent.utils.Storage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private final String DATABASE_NAME = "student-assistent";
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    private AppDatabase db;
-    private TaskDao taskDao;
     private boolean isFabOpen = false;
 
     @Override
@@ -51,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, DATABASE_NAME).allowMainThreadQueries().build();
-        taskDao = db.taskDao();
 
         verifySession();
 
@@ -92,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    FirebaseAuth.getInstance().signOut();
-                    dialog.dismissDialog();
+                    Storage.removeTokenFromSharedPreferences(getApplicationContext());
                     verifySession();
                 }
             }, 2500);
@@ -110,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void verifySession() {
-        if (FirebaseAuth.getInstance().getUid() == null) {
+
+        String token = Storage.getTokenFromSharedPreferences(getApplicationContext());
+        if (token == null) {
             Intent intent = new Intent(this, AuthActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);

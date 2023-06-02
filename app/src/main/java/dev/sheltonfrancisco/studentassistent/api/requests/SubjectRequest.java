@@ -1,30 +1,18 @@
-package dev.sheltonfrancisco.studentassistent.models;
+package dev.sheltonfrancisco.studentassistent.api.requests;
 
-public class Subject {
-    private Integer id;
+public class SubjectRequest {
     private String name;
     private String teacher;
     private Integer grade;
 
-    public Subject(Integer id, String name, String teacher, Integer grade) {
-        this.id = id;
+    public SubjectRequest() {
+
+    }
+
+    public SubjectRequest(String name, String teacher, Integer grade) {
         this.name = name;
         this.teacher = teacher;
         this.grade = grade;
-    }
-
-    public Subject(String name, String teacher, Integer grade) {
-        this.name = name;
-        this.teacher = teacher;
-        this.grade = grade;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

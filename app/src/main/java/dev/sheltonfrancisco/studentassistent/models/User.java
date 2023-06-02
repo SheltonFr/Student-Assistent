@@ -1,30 +1,26 @@
 package dev.sheltonfrancisco.studentassistent.models;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@JsonIgnoreProperties({"message"})
 public class User {
-    @PrimaryKey private int _id;
-    private String firebaseid;
+    private Integer id;
     private String username;
     private String email;
 
-  public User(){}
-
-    public int get_id() {
-      return _id;
-    }
-    public void set_id(int _id) {
-        this._id = _id;
+    public User() {}
+    public User(Integer id, String username, String email) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
     }
 
-    public String getFirebaseid() {
-        return firebaseid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setFirebaseid(String firebaseid) {
-        this.firebaseid = firebaseid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {

@@ -3,11 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.subject.SubjectFragment">
+    android:background="@color/dark"
+    tools:context=".ui.subject.SubjectFragment"
+    android:paddingVertical="20dp"
+    android:paddingHorizontal="15dp">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/dark"
+        android:id="@+id/recylerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:listitem="@layout/subject_list_item"/>
 
 </FrameLayout>
