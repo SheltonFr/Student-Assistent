@@ -133,7 +133,7 @@ public class AuthActivity extends AppCompatActivity implements AuthEventListener
                     startActivity(intent);
                 }
 
-                Toast.makeText(AuthActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                Toast.makeText(AuthActivity.this, "An error occurred!", Toast.LENGTH_LONG).show();
             }
 
             @Override

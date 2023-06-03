@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#DD202020"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="18dp"
     app:cardCornerRadius="5dp"
     tools:showIn="@layout/fragment_subject">
 
