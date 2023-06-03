@@ -44,14 +44,14 @@
         android:id="@+id/saveTaskButton"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="24dp"
         android:background="@color/purple_700"
         android:text="Save"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/inputTime"
-        app:layout_constraintStart_toStartOf="@+id/inputTime"
-        app:layout_constraintTop_toBottomOf="@+id/inputTime" />
+        app:layout_constraintEnd_toEndOf="@+id/inputSubject"
+        app:layout_constraintStart_toStartOf="@+id/inputSubject"
+        app:layout_constraintTop_toBottomOf="@+id/inputSubject" />
 
     <EditText
         android:id="@+id/inputTaskDescription"
@@ -68,7 +68,7 @@
         app:layout_constraintStart_toStartOf="@+id/inputTaskTitle"
         app:layout_constraintTop_toBottomOf="@+id/inputTaskTitle" />
 
-    <EditText
+    <TextView
         android:id="@+id/inputDeadline"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -77,13 +77,14 @@
         android:inputType="date"
         android:paddingHorizontal="7dp"
         android:hint="Deadline"
+        android:textSize="18sp"
         android:textColor="@color/white"
         android:textColorHint="#ADFFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/inputTaskDescription"
         app:layout_constraintStart_toStartOf="@+id/inputTaskDescription"
         app:layout_constraintTop_toBottomOf="@+id/inputTaskDescription" />
 
-    <EditText
+    <TextView
         android:id="@+id/inputTime"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -91,10 +92,22 @@
         android:ems="10"
         android:inputType="time"
         android:hint="Time"
+        android:textSize="18sp"
         android:paddingHorizontal="7dp"
         android:textColor="@color/white"
         android:textColorHint="#ADFFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/inputDeadline"
         app:layout_constraintStart_toStartOf="@+id/inputDeadline"
         app:layout_constraintTop_toBottomOf="@+id/inputDeadline" />
+
+    <Spinner
+        android:id="@+id/inputSubject"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/inputTime"
+        app:layout_constraintStart_toStartOf="@+id/inputTime"
+        app:layout_constraintTop_toBottomOf="@+id/inputTime" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

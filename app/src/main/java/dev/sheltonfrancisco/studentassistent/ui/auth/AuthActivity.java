@@ -138,6 +138,7 @@ public class AuthActivity extends AppCompatActivity implements AuthEventListener
 
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
+                loadDialog.dismissDialog();
                 Log.e("ERROR", t.getMessage(), t);
             }
         });

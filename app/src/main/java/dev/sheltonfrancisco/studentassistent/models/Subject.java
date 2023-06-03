@@ -50,4 +50,9 @@ public class Subject {
     public void setGrade(Integer grade) {
         this.grade = grade;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
