@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import dev.sheltonfrancisco.studentassistent.api.responses.SubjectResponse;
 import dev.sheltonfrancisco.studentassistent.databinding.FragmentCreateSubjectBinding;
 import dev.sheltonfrancisco.studentassistent.databinding.FragmentSubjectBinding;
 import dev.sheltonfrancisco.studentassistent.models.Subject;
+import dev.sheltonfrancisco.studentassistent.ui.ProgressDialog;
 import dev.sheltonfrancisco.studentassistent.ui.adapters.SubjectListAdapter;
 import dev.sheltonfrancisco.studentassistent.utils.Mapper;
 import dev.sheltonfrancisco.studentassistent.utils.Storage;
@@ -69,12 +71,15 @@ public class SubjectFragment extends Fragment {
     }
 
     private void fetchData() {
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.startLoading();
         Call<List<SubjectResponse>> listCall = new RetrofitConfig().getSubjectService().getAll(Storage.getBearerToken(getContext()));
         listCall.enqueue(new Callback<List<SubjectResponse>>() {
             @Override
             public void onResponse(Call<List<SubjectResponse>> call, Response<List<SubjectResponse>> response) {
+                progressDialog.dismissDialog();
                 ArrayList<Subject> subs = new ArrayList<>();
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     response.body().forEach(item -> subs.add(Mapper.mapToSubject(item)));
                     onSubjectListReady(subs);
                 }
@@ -82,10 +87,12 @@ public class SubjectFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<SubjectResponse>> call, Throwable t) {
-
+                progressDialog.dismissDialog();
+                Log.e("ERROR", t.getMessage(), t);
             }
         });
     }
+
     private void onSubjectListReady(ArrayList<Subject> subjects) {
         adapter.updateList(subjects);
         System.out.println(adapter.getItemCount());

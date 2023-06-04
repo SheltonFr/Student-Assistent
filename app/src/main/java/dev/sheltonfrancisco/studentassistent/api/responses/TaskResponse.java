@@ -1,31 +1,28 @@
-package dev.sheltonfrancisco.studentassistent.models;
+package dev.sheltonfrancisco.studentassistent.api.responses;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class Task {
+@JsonIgnoreProperties({"created_at"})
+public class TaskResponse {
     private Integer id;
     private String title;
     private String description;
-    private LocalDateTime deadline;
+    private String deadline;
+    private String status;
     private Integer subjectId;
+    private Integer userId;
 
-    public Task() {
+    public TaskResponse() {
 
     }
-
-    public Task(Integer id, String title, String description, LocalDateTime deadline, Integer subjectId) {
+    public TaskResponse(Integer id, String title, String description, String deadline, String status, Integer subjectId, Integer userId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.deadline = deadline;
+        this.status = status;
         this.subjectId = subjectId;
-    }
-
-    public Task(String title, String description, LocalDateTime deadline, Integer subjectId) {
-        this.title = title;
-        this.description = description;
-        this.deadline = deadline;
-        this.subjectId = subjectId;
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -52,12 +49,20 @@ public class Task {
         this.description = description;
     }
 
-    public LocalDateTime getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(LocalDateTime deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Integer getSubjectId() {
@@ -66,5 +71,13 @@ public class Task {
 
     public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
