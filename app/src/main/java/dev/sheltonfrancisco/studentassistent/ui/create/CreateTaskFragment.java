@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import java.time.LocalDateTime;
@@ -122,10 +123,7 @@ public class CreateTaskFragment extends Fragment {
 
             Task task = new Task(title, description, dateTime, subjectId);
             activityCallback.createTask(task);
-
-
         });
-
     }
 
 
@@ -142,13 +140,6 @@ public class CreateTaskFragment extends Fragment {
                 ArrayList<Subject> subs = new ArrayList<>();
                 if (response.isSuccessful()) {
                     response.body().forEach(item -> subs.add(Mapper.mapToSubject(item)));
-
-                    if (subs.size() < 1) {
-                        Toast.makeText(getContext(), "No Subjects Found", Toast.LENGTH_LONG).show();
-//                        getActivity().finish();
-//                        return;
-                    }
-
                     onSubjectListReady(subs);
                 }
             }
@@ -165,14 +156,20 @@ public class CreateTaskFragment extends Fragment {
     }
 
     private void onSubjectListReady(ArrayList<Subject> subjects) {
-        if(subjects.size() != 0) {
+        if (subjects.size() != 0) {
             this.subjects = subjects;
             spinnerAdapter.addAll(this.subjects);
         } else {
-            getActivity().finish();
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+            dialogBuilder.setTitle("No Subjects Found!");
+            dialogBuilder.setCancelable(false);
+            dialogBuilder.setMessage("You must add subjects to create Tasks");
+            dialogBuilder.setPositiveButton("Ok", (dialogInterface, id) -> {
+                getActivity().finish();
+            });
+
+            dialogBuilder.show();
         }
-
-
     }
 
     private String setFormattedString(int n) {

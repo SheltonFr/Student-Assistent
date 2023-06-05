@@ -73,6 +73,7 @@ public class CreateActivity extends AppCompatActivity implements CreateEventList
                     if (response.isSuccessful()) {
                         Toast.makeText(CreateActivity.this, "Gravado com Sucesso", Toast.LENGTH_SHORT).show();
                         finish();
+                        return;
                     }
 
                     Toast.makeText(CreateActivity.this, "Um erro ocorreu", Toast.LENGTH_SHORT).show();
@@ -108,6 +109,7 @@ public class CreateActivity extends AppCompatActivity implements CreateEventList
                     if (response.isSuccessful()) {
                         Toast.makeText(CreateActivity.this, "Gravado com Sucesso", Toast.LENGTH_SHORT).show();
                         finish();
+                        return;
                     }
 
                     Toast.makeText(CreateActivity.this, "Um erro ocorreu", Toast.LENGTH_SHORT).show();
