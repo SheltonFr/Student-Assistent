@@ -1,6 +1,11 @@
 package dev.sheltonfrancisco.studentassistent;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -23,6 +28,7 @@ import dev.sheltonfrancisco.studentassistent.databinding.ActivityMainBinding;
 import dev.sheltonfrancisco.studentassistent.ui.ProgressDialog;
 import dev.sheltonfrancisco.studentassistent.ui.auth.AuthActivity;
 import dev.sheltonfrancisco.studentassistent.ui.create.CreateActivity;
+import dev.sheltonfrancisco.studentassistent.utils.ReminderBroadcast;
 import dev.sheltonfrancisco.studentassistent.utils.Storage;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         verifySession();
+
+        createNotificationChanel();
 
 
         setupFabs();
@@ -73,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
+
+//            Intent intent = new Intent(getApplicationContext(), ReminderBroadcast.class);
+//            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+//
+//            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//
+//            long currentTimeMillis = System.currentTimeMillis();
+//
+//            long tenSecondInMillis = 1000 * 10;
+//
+//            alarmManager.set(AlarmManager.RTC_WAKEUP, currentTimeMillis + tenSecondInMillis, pendingIntent);
             final ProgressDialog dialog = new ProgressDialog(this);
             Handler handler = new Handler();
 
@@ -81,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Storage.removeTokenFromSharedPreferences(getApplicationContext());
+                    dialog.dismissDialog();
                     verifySession();
                 }
             }, 2500);
@@ -151,5 +171,17 @@ public class MainActivity extends AppCompatActivity {
             isFabOpen = !isFabOpen;
             startActivity(intent);
         });
+    }
+
+    private void createNotificationChanel() {
+        CharSequence name = "Student Assistent";
+        String description = "Chanel for Sumit notification";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+        NotificationChannel chanel = new NotificationChannel("notify", name, importance);
+        chanel.setDescription(description);
+
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        manager.createNotificationChannel(chanel);
     }
 }

@@ -56,9 +56,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         }
 
         public void bind(Task task) {
+
+            String month = task.getDeadline().getMonth().toString();
+            int day = task.getDeadline().getDayOfMonth();
+
+
             title.setText(task.getTitle());
             description.setText(task.getDescription());
-            date.setText("21 Jan");
+            date.setText(day + " " + month.toLowerCase());
         }
     }
 }

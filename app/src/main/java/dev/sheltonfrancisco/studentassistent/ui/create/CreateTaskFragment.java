@@ -165,8 +165,13 @@ public class CreateTaskFragment extends Fragment {
     }
 
     private void onSubjectListReady(ArrayList<Subject> subjects) {
-        this.subjects = subjects;
-        spinnerAdapter.addAll(this.subjects);
+        if(subjects.size() != 0) {
+            this.subjects = subjects;
+            spinnerAdapter.addAll(this.subjects);
+        } else {
+            getActivity().finish();
+        }
+
 
     }
 

@@ -15,7 +15,7 @@ public class RetrofitConfig {
 
     public RetrofitConfig() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(PROD_URL)
+                .baseUrl(DEV_URL)
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
     }
